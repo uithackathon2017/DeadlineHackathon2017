@@ -33,7 +33,7 @@ public class LevelController : MonoBehaviour {
     public float m_sizeContentX = 300.0f;
     public float m_spaceContentX = 50.0f;
     // tao list button
-    void Start()
+    void Awake()
     {
         LevelConfig lv1 = new LevelConfig(1, false, 0, 10, 15, 20);
         LevelConfig lv2 = new LevelConfig(2, true, 0, 15, 20, 25);

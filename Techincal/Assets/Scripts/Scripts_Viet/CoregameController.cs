@@ -17,6 +17,8 @@ public class CoregameController : MonoSingleton<CoregameController> {
     public Text m_txtFacebookCountOfMission;
     public Text m_txtMoneyofCountOfMission;
 
+    //
+    public bool m_isStart = false;
     public void Setup(LevelConfig _currentLevel)
     {
         m_currentLevel = _currentLevel;

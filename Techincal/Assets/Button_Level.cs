@@ -21,4 +21,11 @@ public class Button_Level : MonoBehaviour {
                 m_id.text = "hoc ki " + this.lvConfig.id.ToString();
         }
     }
+
+    public void onClickLevel()
+    {
+        CoregameController.Instance.Setup(this.lvConfig);
+        CoregameController.Instance.StartGame();
+        ScreenManager.Instance.ShowScreenByType(eScreenType.CORE_GAME);
+    }
 }
