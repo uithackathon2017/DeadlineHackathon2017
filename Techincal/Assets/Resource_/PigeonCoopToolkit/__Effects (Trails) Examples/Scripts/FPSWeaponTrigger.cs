@@ -21,6 +21,7 @@ public class FPSWeaponTrigger : MonoBehaviour
 
     private float _smoke;
 
+    public FPSController m_FPSController;
     void Update()
     {
         MuzzlePlume.Emit = _smoke > SmokeAfter;
@@ -30,6 +31,8 @@ public class FPSWeaponTrigger : MonoBehaviour
 
         if (_smoke < 0)
             _smoke = 0;
+
+
     }
 
     public void Fire()
@@ -52,5 +55,8 @@ public class FPSWeaponTrigger : MonoBehaviour
         MuzzleFlashObject.SetActive(false);
     }
     
-
+    public void StopFire()
+    {
+        m_FPSController.stopFire();
+    }
 }

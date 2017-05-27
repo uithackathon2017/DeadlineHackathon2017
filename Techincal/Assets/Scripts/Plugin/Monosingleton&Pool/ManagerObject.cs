@@ -7,7 +7,9 @@ public enum ObjectType
 {
     OBJ_BULLET,
     OBJ_CUBE_THIEN,
-    OBJ_CUBE_CUONG
+    OBJ_CUBE_CUONG,
+    BUTTON_LEVEL
+        
 }
 
 [System.Serializable]
@@ -27,6 +29,7 @@ public class ManagerObject : MonoSingleton<ManagerObject>
     public List<ObjectConfig> listObjectConfig;
     public Dictionary<ObjectType, GameObject> dicListObject;
 
+    private const string m_poolname = "pool";
     void Awake()
     {
         InitDictionary();
@@ -57,7 +60,7 @@ public class ManagerObject : MonoSingleton<ManagerObject>
     public GameObject SpawnObjectByType(ObjectType type)
     {
         GameObject objSpawn = GetObjectByType(type);
-        SpawnPool pool = PoolManager.Pools["pool"];
+        SpawnPool pool = PoolManager.Pools[m_poolname];
         if (pool != null && objSpawn != null)
         {
             return pool.Spawn(objSpawn).gameObject;
@@ -82,12 +85,12 @@ public class ManagerObject : MonoSingleton<ManagerObject>
         return null;
     }
 
-    public void DespawnObject(GameObject obj, PoolName poolName)
+    public void DespawnObject(GameObject obj)
     {
-        if (PoolManager.Pools.ContainsKey(poolName.ToString()))
+        if (PoolManager.Pools.ContainsKey(m_poolname))
         {
-            SpawnPool pool = PoolManager.Pools[poolName.ToString()];
-            Debug.Log(poolName.ToString());
+            SpawnPool pool = PoolManager.Pools["pool"];
+            //Debug.Log(poolName.ToString());
             if (pool.IsSpawned(obj.transform))
             {
                 Debug.Log("desapw");
@@ -97,7 +100,7 @@ public class ManagerObject : MonoSingleton<ManagerObject>
         else
         {
 #if UNITY_EDITOR
-            Debug.Log(poolName + "khong co trong pool");
+            Debug.Log(m_poolname + "khong co trong pool");
 #endif
         }
     }

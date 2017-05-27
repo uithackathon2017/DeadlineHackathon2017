@@ -11,7 +11,6 @@ public class TankProjectile : MonoBehaviour
     void Start()
     {
         Invoke("DestroySelf", Lifetime);
-        Debug.Log("spawn");
     }
 
     void DestroySelf()
@@ -24,9 +23,4 @@ public class TankProjectile : MonoBehaviour
 	{
 	    transform.position = transform.position + transform.forward*Speed*Time.deltaTime;
 	}
-
-    private void OnTriggerEnter(Collider other)
-    {
-        
-    }
 }

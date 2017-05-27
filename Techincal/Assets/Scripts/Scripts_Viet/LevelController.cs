@@ -27,6 +27,11 @@ public class LevelConfig
 public class LevelController : MonoBehaviour {
     public List<LevelConfig> m_listlevel = new List<LevelConfig>();
     public List<Button_Level> m_listButtonLevel = new List<Button_Level>();
+    public Transform m_trfContent;
+   // public RectTransform m_rectrfContent;
+
+    public float m_sizeContentX = 300.0f;
+    public float m_spaceContentX = 50.0f;
     // tao list button
     void Start()
     {
@@ -40,11 +45,24 @@ public class LevelController : MonoBehaviour {
         m_listlevel.Add(lv3);
         m_listlevel.Add(lv4);
         m_listlevel.Add(lv5);
+
         m_listlevel.ForEach(delegate (LevelConfig it){
             Debug.Log(it.id);
-            Button_Level bt = new Button_Level();
-            bt.lvConfig = it;
-            m_listButtonLevel.Add(bt);
+            GameObject buttonLevel = ManagerObject.Instance.SpawnObjectByType(ObjectType.BUTTON_LEVEL);
+            if(m_trfContent && buttonLevel)
+            {
+                buttonLevel.transform.SetParent(m_trfContent);
+                buttonLevel.transform.localScale = Vector3.one;
+                Button_Level bt = buttonLevel.GetComponent<Button_Level>();
+                bt.lvConfig = it;
+                m_listButtonLevel.Add(bt);
+            }
         });
+
+        //if(m_rectrfContent)
+        //{
+        //    Vector2 size = new Vector2(m_sizeContentX* m_listlevel.Count-m_spaceContentX* (m_listlevel.Count-2), 0);
+        //    m_rectrfContent.sizeDelta = size;
+        //}
     }
 }

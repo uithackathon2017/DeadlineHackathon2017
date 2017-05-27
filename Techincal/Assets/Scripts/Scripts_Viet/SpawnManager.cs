@@ -28,6 +28,20 @@ public class SpawnManager : MonoSingleton<SpawnManager> {
     {
         StopSpawnFacebook();
         StopSpawnTime();
+
+
+        for(int i=0;i< m_listFaceBookItem.Count;i++)
+        {
+            ManagerObject.Instance.DespawnObject(m_listFaceBookItem[i].gameObject);
+        }
+        for (int i = 0; i < m_listTimeItem.Count; i++)
+        {
+            ManagerObject.Instance.DespawnObject(m_listTimeItem[i].gameObject);
+        }
+        for (int i = 0; i < m_listMoneyItem.Count; i++)
+        {
+            ManagerObject.Instance.DespawnObject(m_listMoneyItem[i].gameObject);
+        }
     }
 
     [ContextMenu("spawn fb")]
