@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MoveCube : MonoBehaviour {
-    Vector3 pos;
+    private Vector3 pos;
     public float velocity = -30.0f;
     public float time_Run = 2;
     public float time_Delay = 1;

@@ -5,7 +5,9 @@ using PathologicalGames;
 
 public enum ObjectType
 {
-    OBJ_BULLET
+    OBJ_BULLET,
+    OBJ_CUBE_THIEN,
+    OBJ_CUBE_CUONG
 }
 
 [System.Serializable]
@@ -17,7 +19,7 @@ public class ObjectConfig
 
 public enum PoolName
 {
-    Object,Bullet
+    pool
 }
 
 public class ManagerObject : MonoSingleton<ManagerObject>
@@ -52,10 +54,10 @@ public class ManagerObject : MonoSingleton<ManagerObject>
         return null;
     }
 
-    public GameObject SpawnObjectByType(ObjectType type, PoolName poolName)
+    public GameObject SpawnObjectByType(ObjectType type)
     {
         GameObject objSpawn = GetObjectByType(type);
-        SpawnPool pool = PoolManager.Pools[poolName.ToString()];
+        SpawnPool pool = PoolManager.Pools["pool"];
         if (pool != null && objSpawn != null)
         {
             return pool.Spawn(objSpawn).gameObject;

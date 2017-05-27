@@ -21,6 +21,8 @@ public class FPSController : MonoBehaviour
     }
     public void onButtonShoot()
     {
+        Debug.Log("fire!");
+
         WeaponAnimator.SetBool("Fire", true);
     }
 }

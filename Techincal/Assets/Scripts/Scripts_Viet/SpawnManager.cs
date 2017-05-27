@@ -1,0 +1,116 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+
+public class SpawnManager : MonoSingleton<SpawnManager> {
+    public Transform m_positionSpawnItemFacebook;
+    public Transform m_positionSpawnItemTime;
+    public Transform m_positionSpawnItemMoney;
+
+    public bool m_canSpawn = false;
+
+    private float m_timeDelayOfFacebook = 2.0f;
+    private float m_timeDelayOfMoney = 2.0f;
+    private float m_timeDelayOfTime = 2.0f;
+
+    public List<Transform> m_listFaceBookItem = new List<Transform>();
+    public List<Transform> m_listTimeItem = new List<Transform>();
+    public List<Transform> m_listMoneyItem = new List<Transform>();
+    [ContextMenu("spawn all")]
+    public void StartSpawnAll()
+    {
+        StartSpawnFacebook();
+        StartSpawnTime();
+    }
+
+    public void StoptSpawnAll()
+    {
+        StopSpawnFacebook();
+        StopSpawnTime();
+    }
+
+    [ContextMenu("spawn fb")]
+    public void StartSpawnFacebook()
+    {
+        StopCoroutine("SpawnItemFaceBook");
+        if (m_canSpawn)
+            StartCoroutine("SpawnItemFaceBook");
+    }
+
+   
+
+    //
+    [ContextMenu("spawn time")]
+    public void StartSpawnTime()
+    {
+        StopCoroutine("SpawnItemTime");
+        if (m_canSpawn)
+            StartCoroutine("SpawnItemTime");
+    }
+    //
+    [ContextMenu("spawn money")]
+    public void StartSpawnMoney()
+    {
+        StopCoroutine("SpawnItemMoney");
+        if (m_canSpawn)
+            StartCoroutine("SpawnItemMoney");
+    }
+
+    /// <summary>
+    /// ............
+    /// </summary>
+    [ContextMenu("stop spawn time")]
+    public void StopSpawnTime()
+    {
+        StopCoroutine("SpawnItemTime");
+
+    }
+    [ContextMenu("stop spawn fb")]
+    public void StopSpawnFacebook()
+    {
+        StopCoroutine("SpawnItemFaceBook");
+
+    }
+    [ContextMenu("stop spawn fb")]
+    public void StopSpawnMoney()
+    {
+        StopCoroutine("SpawnItemMoney");
+
+    }
+    //
+    public IEnumerator SpawnItemFaceBook()
+    {
+        while(true)
+        {
+            Transform objFacebookprefabs = ManagerObject.Instance.SpawnObjectByType(ObjectType.OBJ_CUBE_THIEN).transform;
+            m_listFaceBookItem.Add(objFacebookprefabs);
+            objFacebookprefabs.position = m_positionSpawnItemFacebook.position;
+            yield return new WaitForSeconds(m_timeDelayOfFacebook);
+        }
+    }
+
+    //
+    public IEnumerator SpawnItemTime()
+    {
+        while (true)
+        {
+            Transform objTimeprefabs = ManagerObject.Instance.SpawnObjectByType(ObjectType.OBJ_CUBE_THIEN).transform;
+            m_listTimeItem.Add(objTimeprefabs); // 
+            objTimeprefabs.position = m_positionSpawnItemTime.position;
+            yield return new WaitForSeconds(m_timeDelayOfTime);
+        }
+    }
+
+    //
+    public IEnumerator SpawnItemMoney()
+    {
+        while (true)
+        {
+            Transform objMoneyprefabs = ManagerObject.Instance.SpawnObjectByType(ObjectType.OBJ_CUBE_THIEN).transform;
+            m_listMoneyItem.Add(objMoneyprefabs); // 
+            objMoneyprefabs.position = m_positionSpawnItemTime.position;
+            yield return new WaitForSeconds(m_timeDelayOfMoney);
+        }
+    }
+}
