@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveCubeStop : MonoBehaviour {
+public class MoveCubeStop : BaseItem {
     Vector3 pos;
     public float velocity = -30.0f;
     public float time_Run = 2;
@@ -41,5 +41,6 @@ public class MoveCubeStop : MonoBehaviour {
         }
         pos.z += Time.deltaTime * velocity;
         this.transform.position = pos;
+
     }
 }

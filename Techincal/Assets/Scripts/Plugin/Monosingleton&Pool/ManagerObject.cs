@@ -6,9 +6,11 @@ using PathologicalGames;
 public enum ObjectType
 {
     OBJ_BULLET,
-    OBJ_CUBE_THIEN,
-    OBJ_CUBE_CUONG,
-    BUTTON_LEVEL
+    ITEM_NORMAL,
+    ITEM_STOP,
+    //ITEM_SINCE_COS,
+    BUTTON_LEVEL,
+    ITEM_JUMP,
         
 }
 

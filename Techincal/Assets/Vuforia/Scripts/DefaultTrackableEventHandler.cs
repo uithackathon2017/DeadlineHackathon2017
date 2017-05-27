@@ -66,7 +66,8 @@ namespace Vuforia
         #region PRIVATE_METHODS
 
         //
-        
+        public GameObject m_ground;
+        //public List<GameObject>
         private void OnTrackingFound()
         {
             //Renderer[] rendererComponents = GetComponentsInChildren<Renderer>(true);
@@ -84,6 +85,10 @@ namespace Vuforia
             //    component.enabled = true;
             //}
             SpawnManager.Instance.StartSpawnAll();
+            if(m_ground)
+            {
+                m_ground.SetActive(true);
+            }
             //CoregameController.Instance.Showtemplete3DByLevel();
             Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " found");
         }
@@ -105,6 +110,10 @@ namespace Vuforia
             //{
             //    component.enabled = false;
             //}
+            if (m_ground)
+            {
+                m_ground.SetActive(false);
+            }
             SpawnManager.Instance.StoptSpawnAll();
             Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " lost");
         }

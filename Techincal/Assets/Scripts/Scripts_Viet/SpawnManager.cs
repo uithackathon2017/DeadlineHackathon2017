@@ -10,9 +10,9 @@ public class SpawnManager : MonoSingleton<SpawnManager> {
 
     public bool m_canSpawn = false;
 
-    private float m_timeDelayOfFacebook = 2.0f;
-    private float m_timeDelayOfMoney = 2.0f;
-    private float m_timeDelayOfTime = 2.0f;
+    private float m_timeDelayOfFacebook = 4.0f;
+    private float m_timeDelayOfMoney = 3.0f;
+    private float m_timeDelayOfTime = 3.0f;
 
     public List<Transform> m_listFaceBookItem = new List<Transform>();
     public List<Transform> m_listTimeItem = new List<Transform>();
@@ -24,6 +24,7 @@ public class SpawnManager : MonoSingleton<SpawnManager> {
         {
             StartSpawnFacebook();
             StartSpawnTime();
+            StartSpawnMoney();
         }
     }
 
@@ -99,7 +100,7 @@ public class SpawnManager : MonoSingleton<SpawnManager> {
     {
         while(true)
         {
-            Transform objFacebookprefabs = ManagerObject.Instance.SpawnObjectByType(ObjectType.OBJ_CUBE_THIEN).transform;
+            Transform objFacebookprefabs = ManagerObject.Instance.SpawnObjectByType(ObjectType.ITEM_JUMP).transform;
             m_listFaceBookItem.Add(objFacebookprefabs);
             objFacebookprefabs.position = m_positionSpawnItemFacebook.position;
             yield return new WaitForSeconds(m_timeDelayOfFacebook);
@@ -111,7 +112,7 @@ public class SpawnManager : MonoSingleton<SpawnManager> {
     {
         while (true)
         {
-            Transform objTimeprefabs = ManagerObject.Instance.SpawnObjectByType(ObjectType.OBJ_CUBE_THIEN).transform;
+            Transform objTimeprefabs = ManagerObject.Instance.SpawnObjectByType(ObjectType.ITEM_NORMAL).transform;
             m_listTimeItem.Add(objTimeprefabs); // 
             objTimeprefabs.position = m_positionSpawnItemTime.position;
             yield return new WaitForSeconds(m_timeDelayOfTime);
@@ -123,9 +124,9 @@ public class SpawnManager : MonoSingleton<SpawnManager> {
     {
         while (true)
         {
-            Transform objMoneyprefabs = ManagerObject.Instance.SpawnObjectByType(ObjectType.OBJ_CUBE_THIEN).transform;
+            Transform objMoneyprefabs = ManagerObject.Instance.SpawnObjectByType(ObjectType.ITEM_STOP).transform;
             m_listMoneyItem.Add(objMoneyprefabs); // 
-            objMoneyprefabs.position = m_positionSpawnItemTime.position;
+            objMoneyprefabs.position = m_positionSpawnItemMoney.position;
             yield return new WaitForSeconds(m_timeDelayOfMoney);
         }
     }

@@ -44,9 +44,11 @@ public class FPSController : MonoBehaviour
         {
             if (hit.transform.tag == "Item")
             {
-                Debug.Log("ok!");
-
-                Destroy(hit.transform.gameObject);
+                //Debug.Log("ok!");
+                BaseItem m_item = hit.transform.GetComponent<BaseItem>();
+                //CoregameController.Instance.
+                //Destroy(hit.transform.gameObject);
+                ManagerObject.Instance.DespawnObject(hit.transform.gameObject);
             }
         }
     }

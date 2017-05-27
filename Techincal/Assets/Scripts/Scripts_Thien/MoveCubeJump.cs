@@ -2,7 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MoveCubeJump : MonoBehaviour {
+public enum ItemsType
+{
+    ItemGirl,
+    ItemDeadline,
+    ItemMoney
+}
+public class MoveCubeJump : BaseItem {
     Vector3 pos;
     public float velocity = -30.0f;
     public float velocity_Y = 90.0f;
@@ -14,6 +20,7 @@ public class MoveCubeJump : MonoBehaviour {
     public float jump_High;
     float max_Y;
     bool isMax = false;
+
     // Use this for initialization
     void Start()
     {
@@ -40,12 +47,12 @@ public class MoveCubeJump : MonoBehaviour {
             if (!isMax)
             {
                 newPos.y += Time.deltaTime * velocity_Y;
-                Debug.Log("Dang Tang" + newPos.y);
+                //Debug.Log("Dang Tang" + newPos.y);
             }
             else
             {
                 newPos.y += Time.deltaTime * -velocity_Y;
-                Debug.Log("Dang Giam" + newPos.y);
+                //Debug.Log("Dang Giam" + newPos.y);
             }
             if (newPos.y >= jump_High)
                 isMax = true;
