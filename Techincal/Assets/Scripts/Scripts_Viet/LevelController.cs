@@ -54,7 +54,7 @@ public class LevelController : MonoBehaviour {
                 buttonLevel.transform.SetParent(m_trfContent);
                 buttonLevel.transform.localScale = Vector3.one;
                 Button_Level bt = buttonLevel.GetComponent<Button_Level>();
-                bt.lvConfig = it;
+                bt.Setup(it);
                 m_listButtonLevel.Add(bt);
             }
         });
