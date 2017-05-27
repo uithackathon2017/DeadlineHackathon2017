@@ -15,7 +15,7 @@ public class LevelConfig
     public int moneyCount;//20
 }
 
-public class LevelManager : MonoBehaviour {
+public class LevelController : MonoBehaviour {
     public List<LevelConfig> m_listlevel = new List<LevelConfig>();
     // tao list button
 }
