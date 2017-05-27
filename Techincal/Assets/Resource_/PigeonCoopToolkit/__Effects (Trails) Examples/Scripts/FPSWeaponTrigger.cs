@@ -46,8 +46,7 @@ public class FPSWeaponTrigger : MonoBehaviour
 
         r.velocity = (ShellEjectionTransform.right * EjectionForce) + Random.onUnitSphere * 0.25f;
         r.angularVelocity = Random.onUnitSphere*EjectionForce;
-
-        Instantiate(Bullet, Muzzle.transform.position, Muzzle.rotation);
+        //Instantiate(Bullet, Muzzle.transform.position, Muzzle.rotation);
     }
 
     private void LightsOff()

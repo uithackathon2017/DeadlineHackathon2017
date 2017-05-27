@@ -20,15 +20,17 @@ public class SpawnManager : MonoSingleton<SpawnManager> {
     [ContextMenu("spawn all")]
     public void StartSpawnAll()
     {
-        StartSpawnFacebook();
-        StartSpawnTime();
+        if(CoregameController.Instance.m_isStart)
+        {
+            StartSpawnFacebook();
+            StartSpawnTime();
+        }
     }
 
     public void StoptSpawnAll()
     {
         StopSpawnFacebook();
         StopSpawnTime();
-
 
         for(int i=0;i< m_listFaceBookItem.Count;i++)
         {

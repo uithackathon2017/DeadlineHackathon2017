@@ -27,24 +27,28 @@ public class FPSController : MonoBehaviour
         //}
 
         // collision
-        RaycastHit hit;
-        if (Physics.Raycast(cameraAR.transform.position, cameraAR.transform.forward, out hit, 1000.0f, mask))
-        {
-            if (hit.transform.tag != "")
-            {
-                Debug.Log("ok!");
-            }
-            else
-            {
-                Debug.Log("fail");
-            }
-        }
+        
     }
 
     public void onFireButton()
     {
         Debug.Log("click");
         WeaponAnimator.SetBool("Fire", true);
+        Shoot();    
+    }
+
+    public void Shoot()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(cameraAR.transform.position, cameraAR.transform.forward, out hit, 1000.0f, mask))
+        {
+            if (hit.transform.tag == "Item")
+            {
+                Debug.Log("ok!");
+
+                Destroy(hit.transform.gameObject);
+            }
+        }
     }
 
     [ContextMenu("test")]

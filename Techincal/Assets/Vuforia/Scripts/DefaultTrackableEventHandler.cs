@@ -5,7 +5,7 @@ Confidential and Proprietary - Protected under copyright and other laws.
 ==============================================================================*/
 
 using UnityEngine;
-
+using System.Collections.Generic;
 namespace Vuforia
 {
     /// <summary>
@@ -65,45 +65,47 @@ namespace Vuforia
 
         #region PRIVATE_METHODS
 
-
+        //
+        
         private void OnTrackingFound()
         {
-            Renderer[] rendererComponents = GetComponentsInChildren<Renderer>(true);
-            Collider[] colliderComponents = GetComponentsInChildren<Collider>(true);
+            //Renderer[] rendererComponents = GetComponentsInChildren<Renderer>(true);
+            //Collider[] colliderComponents = GetComponentsInChildren<Collider>(true);
 
-            // Enable rendering:
-            foreach (Renderer component in rendererComponents)
-            {
-                component.enabled = true;
-            }
+            //// Enable rendering:
+            //foreach (Renderer component in rendererComponents)
+            //{
+            //    component.enabled = true;
+            //}
 
-            // Enable colliders:
-            foreach (Collider component in colliderComponents)
-            {
-                component.enabled = true;
-            }
-
+            //// Enable colliders:
+            //foreach (Collider component in colliderComponents)
+            //{
+            //    component.enabled = true;
+            //}
+            SpawnManager.Instance.StartSpawnAll();
+            //CoregameController.Instance.Showtemplete3DByLevel();
             Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " found");
         }
 
 
         private void OnTrackingLost()
         {
-            Renderer[] rendererComponents = GetComponentsInChildren<Renderer>(true);
-            Collider[] colliderComponents = GetComponentsInChildren<Collider>(true);
+            //Renderer[] rendererComponents = GetComponentsInChildren<Renderer>(true);
+            //Collider[] colliderComponents = GetComponentsInChildren<Collider>(true);
 
-            // Disable rendering:
-            foreach (Renderer component in rendererComponents)
-            {
-                component.enabled = false;
-            }
+            //// Disable rendering:
+            //foreach (Renderer component in rendererComponents)
+            //{
+            //    component.enabled = false;
+            //}
 
-            // Disable colliders:
-            foreach (Collider component in colliderComponents)
-            {
-                component.enabled = false;
-            }
-
+            //// Disable colliders:
+            //foreach (Collider component in colliderComponents)
+            //{
+            //    component.enabled = false;
+            //}
+            SpawnManager.Instance.StoptSpawnAll();
             Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " lost");
         }
 
