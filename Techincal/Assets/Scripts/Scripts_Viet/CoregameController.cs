@@ -29,6 +29,8 @@ public class CoregameController : MonoSingleton<CoregameController>
     //public List<GameObject> m_listCurrentTemp = new List<GameObject>();
 
 
+    public bool m_isplaying = false;
+
     private void Awake()
     {
         //for (int i = 0; i < m_listTempConfig.Count; i++)
@@ -96,6 +98,7 @@ public class CoregameController : MonoSingleton<CoregameController>
     {
         SpawnManager.Instance.m_canSpawn = true;
         m_isStart = true;
+        m_isplaying = true;
         //m_txtTimeCountOfMission.text = this.m_currentLevel.timeCount.ToString();
         //m_txtMoneyofCountOfMission.text = this.m_currentLevel.moneyCount.ToString();
         //m_txtFacebookCountOfMission.text = this.m_currentLevel.facebookCount.ToString();
@@ -126,7 +129,6 @@ public class CoregameController : MonoSingleton<CoregameController>
         this.m_currentLevel.moneyCount += score;
         if (m_txtMoneyofCountOfMission)
             m_txtMoneyofCountOfMission.text = "Money :" + m_currentLevel.moneyCount.ToString();
-
         CheckGameover();
     }
 

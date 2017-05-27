@@ -10,10 +10,10 @@ public class BaseItem : MonoBehaviour {
     {
         if(other.gameObject.tag.Equals("Target"))
         {
-            Debug.Log("target");
+            //Debug.Log("target");
             CoregameController.Instance.addScoreByType(this.m_type);
             //Destroy();
-            ManagerObject.Instance.DespawnObject(other.gameObject);
+            ManagerObject.Instance.DespawnObject(this.gameObject);
         }
     }
 }

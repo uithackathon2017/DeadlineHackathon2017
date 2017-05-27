@@ -67,9 +67,17 @@ namespace Vuforia
 
         //
         public GameObject m_ground;
-        //public List<GameObject>
+        public GameObject m_objTemplete;
+        public GameObject m_warmingScreen;
+
         private void OnTrackingFound()
         {
+            if (!CoregameController.Instance.m_isplaying)
+            {
+                CoregameController.Instance.m_isplaying = true;
+            }
+
+            SpawnManager.Instance.m_canSpawn = true;
             //Renderer[] rendererComponents = GetComponentsInChildren<Renderer>(true);
             //Collider[] colliderComponents = GetComponentsInChildren<Collider>(true);
 
@@ -84,10 +92,19 @@ namespace Vuforia
             //{
             //    component.enabled = true;
             //}
+            SpawnManager.Instance.ResumeWhenTrackingLost();
             SpawnManager.Instance.StartSpawnAll();
             if(m_ground)
             {
                 m_ground.SetActive(true);
+            }
+            if(m_objTemplete)
+            {
+                m_objTemplete.SetActive(true);
+            }
+            if(m_warmingScreen)
+            {
+                m_warmingScreen.SetActive(false);
             }
             //CoregameController.Instance.Showtemplete3DByLevel();
             Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " found");
@@ -96,6 +113,11 @@ namespace Vuforia
 
         private void OnTrackingLost()
         {
+            if (CoregameController.Instance.m_isplaying)
+            {
+                CoregameController.Instance.m_isplaying = false;
+                SpawnManager.Instance.m_canSpawn = false;
+            }
             //Renderer[] rendererComponents = GetComponentsInChildren<Renderer>(true);
             //Collider[] colliderComponents = GetComponentsInChildren<Collider>(true);
 
@@ -114,7 +136,16 @@ namespace Vuforia
             {
                 m_ground.SetActive(false);
             }
+            if (m_objTemplete)
+            {
+                m_objTemplete.SetActive(false);
+            }
+            if (m_warmingScreen)
+            {
+                m_warmingScreen.SetActive(true);
+            }
             SpawnManager.Instance.StoptSpawnAll();
+            SpawnManager.Instance.PauseWhenTrackingLost();
             Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " lost");
         }
 

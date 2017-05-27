@@ -40,12 +40,13 @@ public class FPSController : MonoBehaviour
     public void Shoot()
     {
         RaycastHit hit;
-        if (Physics.Raycast(cameraAR.transform.position, cameraAR.transform.forward, out hit, 1000.0f, mask))
+        if (Physics.Raycast(cameraAR.transform.position, cameraAR.transform.forward, out hit, 5000.0f, mask))
         {
             if (hit.transform.tag == "Item")
             {
                 //Debug.Log("ok!");
                 BaseItem m_item = hit.transform.GetComponent<BaseItem>();
+                CoregameController.Instance.SubScoreByType(m_item.m_type);
                 //CoregameController.Instance.
                 //Destroy(hit.transform.gameObject);
                 ManagerObject.Instance.DespawnObject(hit.transform.gameObject);

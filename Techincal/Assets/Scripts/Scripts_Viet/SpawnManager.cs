@@ -10,9 +10,9 @@ public class SpawnManager : MonoSingleton<SpawnManager> {
 
     public bool m_canSpawn = false;
 
-    private float m_timeDelayOfFacebook = 4.0f;
-    private float m_timeDelayOfMoney = 3.0f;
-    private float m_timeDelayOfTime = 3.0f;
+    private float m_timeDelayOfFacebook = 6.0f;
+    private float m_timeDelayOfMoney = 5.0f;
+    private float m_timeDelayOfTime = 5.5f;
 
     public List<Transform> m_listFaceBookItem = new List<Transform>();
     public List<Transform> m_listTimeItem = new List<Transform>();
@@ -20,7 +20,7 @@ public class SpawnManager : MonoSingleton<SpawnManager> {
     [ContextMenu("spawn all")]
     public void StartSpawnAll()
     {
-        if(CoregameController.Instance.m_isStart)
+        if(CoregameController.Instance.m_isStart && m_canSpawn)
         {
             StartSpawnFacebook();
             StartSpawnTime();
@@ -128,6 +128,40 @@ public class SpawnManager : MonoSingleton<SpawnManager> {
             m_listMoneyItem.Add(objMoneyprefabs); // 
             objMoneyprefabs.position = m_positionSpawnItemMoney.position;
             yield return new WaitForSeconds(m_timeDelayOfMoney);
+        }
+    }
+
+    [ContextMenu("pause")]
+    public void PauseWhenTrackingLost()
+    {
+        for(int i=0;i<m_listFaceBookItem.Count;i++)
+        {
+            m_listFaceBookItem[i].gameObject.SetActive(false);
+        }
+        for (int i = 0; i < m_listMoneyItem.Count; i++)
+        {
+            m_listMoneyItem[i].gameObject.SetActive(false);
+        }
+        for (int i = 0; i < m_listTimeItem.Count; i++)
+        {
+            m_listTimeItem[i].gameObject.SetActive(false);
+        }
+    }
+
+    [ContextMenu("resume")]
+    public void ResumeWhenTrackingLost()
+    {
+        for (int i = 0; i < m_listFaceBookItem.Count; i++)
+        {
+            m_listFaceBookItem[i].gameObject.SetActive(true);
+        }
+        for (int i = 0; i < m_listMoneyItem.Count; i++)
+        {
+            m_listMoneyItem[i].gameObject.SetActive(true);
+        }
+        for (int i = 0; i < m_listTimeItem.Count; i++)
+        {
+            m_listTimeItem[i].gameObject.SetActive(true);
         }
     }
 }
