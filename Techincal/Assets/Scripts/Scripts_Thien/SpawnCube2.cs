@@ -11,7 +11,7 @@ public class SpawnCube2 : MonoBehaviour {
     void Start()
     {
         timer = 0;
-       // Instantiate(obj_to_Spawn);
+        //Instantiate(obj_to_Spawn);
     }
 
     // Update is called once per frame
@@ -20,7 +20,6 @@ public class SpawnCube2 : MonoBehaviour {
         if ((timer += Time.deltaTime) >= time_Spawn)
         {
             Instantiate(obj_to_Spawn);
-
             timer = 0;
         }
     }
