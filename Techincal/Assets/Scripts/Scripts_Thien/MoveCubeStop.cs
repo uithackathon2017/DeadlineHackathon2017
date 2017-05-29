@@ -24,7 +24,7 @@ public class MoveCubeStop : BaseItem {
         {
             if ((timeRun += Time.deltaTime) >= time_Run)
             {
-                Debug.Log("Time before:" + timeRun);
+                //Debug.Log("Time before:" + timeRun);
                 this.velocity = 0;
 
             }
@@ -34,7 +34,7 @@ public class MoveCubeStop : BaseItem {
             if ((timeDelay += Time.deltaTime) >= time_Delay)
             {
                 this.velocity = defaultVelocity;
-                Debug.Log("Time after:" + timeDelay);
+                //Debug.Log("Time after:" + timeDelay);
                 timeDelay = 0;
                 timeRun = 0;
             }

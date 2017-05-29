@@ -49,7 +49,16 @@ public class FPSController : MonoBehaviour
                 CoregameController.Instance.SubScoreByType(m_item.m_type);
                 //CoregameController.Instance.
                 //Destroy(hit.transform.gameObject);
+                //Debug.Log("...................:"+hit.transform.name);
+                //SpawnManager.Instance.RemoveObjectDie(m_item.m_type, hit.transform.name);
+                SpawnManager.Instance.RemoveObjectDie(hit.transform);
+                ManagerObject.Instance.SpawnObjectByType(ObjectType.PARTICAL_ENEMY_DIE).transform.position = hit.transform.position;
                 ManagerObject.Instance.DespawnObject(hit.transform.gameObject);
+            }
+            else if(hit.transform.tag=="Ground")
+            {
+                //Debug.Log("ok!");
+                ManagerObject.Instance.SpawnObjectByType(ObjectType.PARTICAL_ENEMY_DIE).transform.position = hit.transform.position;
             }
         }
     }

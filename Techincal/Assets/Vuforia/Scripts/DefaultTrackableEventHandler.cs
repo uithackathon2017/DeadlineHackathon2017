@@ -92,6 +92,7 @@ namespace Vuforia
             //{
             //    component.enabled = true;
             //}
+            CoregameController.Instance.StartUpdateTimer();
             SpawnManager.Instance.ResumeWhenTrackingLost();
             SpawnManager.Instance.StartSpawnAll();
             if(m_ground)
@@ -146,6 +147,7 @@ namespace Vuforia
             }
             SpawnManager.Instance.StoptSpawnAll();
             SpawnManager.Instance.PauseWhenTrackingLost();
+            CoregameController.Instance.StopUpdateTimer();
             Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " lost");
         }
 

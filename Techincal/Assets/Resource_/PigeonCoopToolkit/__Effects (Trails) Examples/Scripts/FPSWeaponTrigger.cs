@@ -40,12 +40,12 @@ public class FPSWeaponTrigger : MonoBehaviour
         MuzzleFlashObject.SetActive(true);
         Invoke("LightsOff",0.05f);
         _smoke += SmokeIncrement;
-        Rigidbody r =
-            (Instantiate(Shell.gameObject, ShellEjectionTransform.position, ShellEjectionTransform.rotation) as
-             GameObject).GetComponent<Rigidbody>();
+        //Rigidbody r =
+        //    (Instantiate(Shell.gameObject, ShellEjectionTransform.position, ShellEjectionTransform.rotation) as
+        //     GameObject).GetComponent<Rigidbody>();
 
-        r.velocity = (ShellEjectionTransform.right * EjectionForce) + Random.onUnitSphere * 0.25f;
-        r.angularVelocity = Random.onUnitSphere*EjectionForce;
+        //r.velocity = (ShellEjectionTransform.right * EjectionForce) + Random.onUnitSphere * 0.25f;
+        //r.angularVelocity = Random.onUnitSphere*EjectionForce;
         //Instantiate(Bullet, Muzzle.transform.position, Muzzle.rotation);
     }
 

@@ -12,8 +12,10 @@ public class BaseItem : MonoBehaviour {
         {
             //Debug.Log("target");
             CoregameController.Instance.addScoreByType(this.m_type);
+            SpawnManager.Instance.RemoveObjectDie(this.m_type, this.name);
             //Destroy();
             ManagerObject.Instance.DespawnObject(this.gameObject);
+           
         }
     }
 }

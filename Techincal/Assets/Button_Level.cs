@@ -18,12 +18,16 @@ public class Button_Level : MonoBehaviour {
             if(m_imgLockIcon)
                 m_imgLockIcon.gameObject.SetActive(this.lvConfig.m_isLock);
             if (m_id)
-                m_id.text = "hoc ki " + this.lvConfig.id.ToString();
+                m_id.text = "HỌC KÌ " + this.lvConfig.id.ToString();
         }
     }
 
     public void onClickLevel()
     {
+        if(this.lvConfig.m_isLock)
+        {
+            return;
+        }
         CoregameController.Instance.Setup(this.lvConfig);
         CoregameController.Instance.StartGame();
         ScreenManager.Instance.ShowScreenByType(eScreenType.CORE_GAME);

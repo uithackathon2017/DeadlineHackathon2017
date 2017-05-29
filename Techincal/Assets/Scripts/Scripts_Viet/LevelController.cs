@@ -32,22 +32,25 @@ public class LevelController : MonoBehaviour {
 
     public float m_sizeContentX = 300.0f;
     public float m_spaceContentX = 50.0f;
-    // tao list button
-    void Awake()
-    {
-        LevelConfig lv1 = new LevelConfig(1, false, 0, 10, 15, 20);
-        LevelConfig lv2 = new LevelConfig(2, true, 0, 15, 20, 25);
-        LevelConfig lv3 = new LevelConfig(3, true, 0, 20, 25, 30);
-        LevelConfig lv4 = new LevelConfig(4, true, 0, 25, 30, 35);
-        LevelConfig lv5 = new LevelConfig(5, true, 0, 30, 35, 40);
-        m_listlevel.Add(lv1);
-        m_listlevel.Add(lv2);
-        m_listlevel.Add(lv3);
-        m_listlevel.Add(lv4);
-        m_listlevel.Add(lv5);
 
+    public List<Color> m_listColor = new List<Color>();
+
+    // tao list button
+    void OnEnable()
+    {
+        //LevelConfig lv1 = new LevelConfig(1, false, 0, 10, 15, 20);
+        //LevelConfig lv2 = new LevelConfig(2, true, 0, 15, 20, 25);
+        //LevelConfig lv3 = new LevelConfig(3, true, 0, 20, 25, 30);
+        //LevelConfig lv4 = new LevelConfig(4, true, 0, 25, 30, 35);
+        //LevelConfig lv5 = new LevelConfig(5, true, 0, 30, 35, 40);
+        //m_listlevel.Add(lv1);
+        //m_listlevel.Add(lv2);
+        //m_listlevel.Add(lv3);
+        //m_listlevel.Add(lv4);
+        //m_listlevel.Add(lv5);
+        int i = 0;
         m_listlevel.ForEach(delegate (LevelConfig it){
-            Debug.Log(it.id);
+            //Debug.Log(it.id);
             GameObject buttonLevel = ManagerObject.Instance.SpawnObjectByType(ObjectType.BUTTON_LEVEL);
             if(m_trfContent && buttonLevel)
             {
@@ -56,11 +59,22 @@ public class LevelController : MonoBehaviour {
                 Button_Level bt = buttonLevel.GetComponent<Button_Level>();
                 
                 bt.Setup(it);
+
+                //
+                buttonLevel.GetComponent<Image>().color = m_listColor[i];
                 m_listButtonLevel.Add(bt);
+                i++;
             }
         });
 
-        //if(m_rectrfContent)
+        //Debug.Log("CoregameController.Instance.m_currentLevelID"+CoregameController.Instance.m_currentLevelID);
+        //for(int k=0;k< CoregameController.Instance.m_currentLevelID;i++)
+        //{
+        //    LevelConfig bt = m_listlevel[i];
+        //    bt.m_isLock = true;
+        //    m_listButtonLevel[i].Setup (bt);
+        //}
+        ////if(m_rectrfContent)
         //{
         //    Vector2 size = new Vector2(m_sizeContentX* m_listlevel.Count-m_spaceContentX* (m_listlevel.Count-2), 0);
         //    m_rectrfContent.sizeDelta = size;

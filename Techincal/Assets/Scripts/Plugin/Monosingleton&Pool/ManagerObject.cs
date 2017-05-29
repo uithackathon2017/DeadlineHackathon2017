@@ -11,7 +11,9 @@ public enum ObjectType
     //ITEM_SINCE_COS,
     BUTTON_LEVEL,
     ITEM_JUMP,
-        
+    PARTICAL_ENEMY_DIE,
+    PARTICAL_HIT
+
 }
 
 [System.Serializable]

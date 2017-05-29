@@ -45,6 +45,8 @@ public class ScreenManager : MonoSingleton<ScreenManager>
         set { m_currentScreen = value; }
     }
 
+
+    public GameObject m_background; 
     // config
     //public Button m_buttonBack;
     //public Text m_txtOfButtonBack;
@@ -102,14 +104,26 @@ public class ScreenManager : MonoSingleton<ScreenManager>
         return null;
     }
 
-
+    public AudioSource m_audio;
     public GameObject ShowScreenByType(eScreenType _type)
     {
         HideScreenByType(CurrentScreen);
         m_myStackOfScreen.Push(CurrentScreen);
-
+        
         GameObject objScreen = GetScreenByType(_type);
-
+        if(_type == eScreenType.CORE_GAME)
+        {
+            m_background.SetActive(false);
+            m_audio.Stop();
+        }
+        else
+        {
+            if(!m_audio.isPlaying)
+            {
+                m_audio.Play();
+            }
+            m_background.SetActive(true);
+        }
         if (objScreen)
         {
             objScreen.SetActive(true);
